@@ -92,29 +92,29 @@ func DefaultConfig() *Config {
 
 	return &Config{
 		CurrentEnvironment: "dev",
-		Environments: map[string]*Environment{
-			"dev": {
-				Name:        "Development",
-				ProjectID:   "homework-475918",
-				Region:      "us-central1",
-				ClusterName: "dev-gke-cluster",
-				Namespace:   "vault",
-				ServiceName: "vault",
-				VaultAddr:   "https://vault-dev.dautov.dev",  // Use Cloudflare DNS
-				VaultPort:   "443",
-				UseNipIO:    false,  // Using custom domain now
-			},
-			"prod": {
-				Name:        "Production",
-				ProjectID:   "homework-475918",
-				Region:      "us-central1",
-				ClusterName: "prod-gke-cluster",
-				Namespace:   "vault",
-				ServiceName: "vault",
-				VaultAddr:   "https://vault.dautov.dev",  // Use Cloudflare DNS
-				VaultPort:   "443",
-				UseNipIO:    false,  // Using custom domain now
-			},
+	Environments: map[string]*Environment{
+		"dev": {
+			Name:        "Development",
+			ProjectID:   "homework-475918",
+			Region:      "us-central1",
+			ClusterName: "dev-gke-cluster",
+			Namespace:   "vault",
+			ServiceName: "vault",
+			VaultAddr:   "http://vault-dev.dautov.dev",  // HTTP for now, HTTPS coming soon
+			VaultPort:   "8200",
+			UseNipIO:    false,  // Using custom domain now
+		},
+		"prod": {
+			Name:        "Production",
+			ProjectID:   "homework-475918",
+			Region:      "us-central1",
+			ClusterName: "prod-gke-cluster",
+			Namespace:   "vault",
+			ServiceName: "vault",
+			VaultAddr:   "http://vault.dautov.dev",  // HTTP for now, HTTPS coming soon
+			VaultPort:   "8200",
+			UseNipIO:    false,  // Using custom domain now
+		},
 		},
 		TokenFile:    filepath.Join(home, ".ruslan-cli", "tokens"),
 		CacheDir:     filepath.Join(home, ".ruslan-cli", "cache"),
