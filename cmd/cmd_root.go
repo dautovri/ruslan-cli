@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-"os"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -39,7 +39,7 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ruslan-cli/config.yaml)")
 	rootCmd.PersistentFlags().String("env", "", "environment to use (dev/prod)")
 	rootCmd.PersistentFlags().String("format", "table", "output format (table, json, yaml)")
-	
+
 	viper.BindPFlag("environment", rootCmd.PersistentFlags().Lookup("env"))
 	viper.BindPFlag("format", rootCmd.PersistentFlags().Lookup("format"))
 

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/dautovri/ruslan-cli/pkg/auth"
 	"github.com/dautovri/ruslan-cli/pkg/config"
+	vaultapi "github.com/hashicorp/vault/api"
 )
 
 type Client struct {
@@ -105,7 +105,7 @@ func (c *Client) ListSecrets(path string) ([]string, error) {
 	if !strings.HasPrefix(path, "secret/metadata/") && strings.HasPrefix(path, "secret/") {
 		metadataPath = strings.Replace(path, "secret/", "secret/metadata/", 1)
 	}
-	
+
 	secret, err := c.Logical().List(metadataPath)
 	if err != nil {
 		return nil, err
@@ -146,12 +146,12 @@ func (c *Client) PutSecret(path string, data map[string]interface{}) error {
 	if !strings.HasPrefix(path, "secret/data/") && strings.HasPrefix(path, "secret/") {
 		dataPath = strings.Replace(path, "secret/", "secret/data/", 1)
 	}
-	
+
 	// Wrap the data for KV v2
 	wrappedData := map[string]interface{}{
 		"data": data,
 	}
-	
+
 	_, err := c.Logical().Write(dataPath, wrappedData)
 	return err
 }

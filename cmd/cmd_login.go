@@ -8,9 +8,9 @@ import (
 )
 
 var (
-	loginMethod string
-	loginToken  string
-	loginRoleID string
+	loginMethod   string
+	loginToken    string
+	loginRoleID   string
 	loginSecretID string
 )
 
@@ -32,11 +32,11 @@ var loginCmd = &cobra.Command{
 			if err := client.LoginWithToken(loginToken); err != nil {
 				return fmt.Errorf("token authentication failed: %w", err)
 			}
-		
+
 		case "userpass":
 			username, _ := cmd.Flags().GetString("username")
 			password, _ := cmd.Flags().GetString("password")
-			
+
 			if username == "" {
 				fmt.Print("Username: ")
 				fmt.Scanln(&username)
@@ -46,12 +46,12 @@ var loginCmd = &cobra.Command{
 				// In production, use terminal.ReadPassword for secure input
 				fmt.Scanln(&password)
 			}
-			
+
 			_, err := client.LoginWithUserPass(username, password)
 			if err != nil {
 				return fmt.Errorf("userpass authentication failed: %w", err)
 			}
-		
+
 		case "approle":
 			if loginRoleID == "" || loginSecretID == "" {
 				return fmt.Errorf("role-id and secret-id are required for approle auth")
@@ -60,7 +60,7 @@ var loginCmd = &cobra.Command{
 			if err != nil {
 				return fmt.Errorf("approle authentication failed: %w", err)
 			}
-		
+
 		default:
 			return fmt.Errorf("unsupported auth method: %s", loginMethod)
 		}
@@ -115,7 +115,7 @@ var authStatusCmd = &cobra.Command{
 				fmt.Printf("TTL: %.0fs\n", ttl)
 			}
 		}
-		
+
 		return nil
 	},
 }
@@ -123,7 +123,7 @@ var authStatusCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(loginCmd)
 	rootCmd.AddCommand(logoutCmd)
-	
+
 	authCmd := &cobra.Command{
 		Use:   "auth",
 		Short: "Authentication operations",
