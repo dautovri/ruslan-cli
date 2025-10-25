@@ -1,11 +1,11 @@
 package config
 
 import (
-"os"
-"path/filepath"
-"testing"
+	"os"
+	"path/filepath"
+	"testing"
 
-"gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v3"
 )
 
 func TestDefaultConfig(t *testing.T) {
@@ -36,17 +36,17 @@ func TestSaveAndLoad(t *testing.T) {
 
 	cfg := DefaultConfig()
 	cfg.CurrentEnvironment = "prod"
-	
+
 	configDir := filepath.Dir(testConfigPath)
 	if err := os.MkdirAll(configDir, 0700); err != nil {
 		t.Fatalf("Failed to create config directory: %v", err)
 	}
-	
+
 	data, err := yaml.Marshal(cfg)
 	if err != nil {
 		t.Fatalf("Failed to marshal config: %v", err)
 	}
-	
+
 	if err := os.WriteFile(testConfigPath, data, 0600); err != nil {
 		t.Fatalf("Failed to write config: %v", err)
 	}
@@ -55,7 +55,7 @@ func TestSaveAndLoad(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to read config: %v", err)
 	}
-	
+
 	var loaded Config
 	if err := yaml.Unmarshal(loadedData, &loaded); err != nil {
 		t.Fatalf("Failed to parse config: %v", err)
