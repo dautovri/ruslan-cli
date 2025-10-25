@@ -91,13 +91,19 @@ Example `.ruslan-cli.yaml`:
 ```yaml
 environments:
   dev:
-    project_id: "zededa-playground"
+    project_id: "homework-475918"
     cluster_name: "dev-gke-cluster"
     region: "us-central1"
     namespace: "vault"
     service_name: "vault"
+    vault_addr: "https://vault-dev.dautov.dev"
   prod:
-    project_id: "zededa-playground"
+    project_id: "homework-475918"
+    cluster_name: "prod-gke-cluster"
+    region: "us-central1"
+    namespace: "vault"
+    service_name: "vault"
+    vault_addr: "https://vault.dautov.dev"
     cluster_name: "prod-gke-cluster"
     region: "us-central1"
     namespace: "vault"

@@ -95,23 +95,25 @@ func DefaultConfig() *Config {
 		Environments: map[string]*Environment{
 			"dev": {
 				Name:        "Development",
-				ProjectID:   "zededa-playground",
+				ProjectID:   "homework-475918",
 				Region:      "us-central1",
 				ClusterName: "dev-gke-cluster",
 				Namespace:   "vault",
-				ServiceName: "vault-ui",
-				VaultPort:   "8200",
-				UseNipIO:    true,
+				ServiceName: "vault",
+				VaultAddr:   "https://vault-dev.dautov.dev",  // Use Cloudflare DNS
+				VaultPort:   "443",
+				UseNipIO:    false,  // Using custom domain now
 			},
 			"prod": {
 				Name:        "Production",
-				ProjectID:   "zededa-playground",
+				ProjectID:   "homework-475918",
 				Region:      "us-central1",
 				ClusterName: "prod-gke-cluster",
 				Namespace:   "vault",
-				ServiceName: "vault-ui",
-				VaultPort:   "8200",
-				UseNipIO:    true,
+				ServiceName: "vault",
+				VaultAddr:   "https://vault.dautov.dev",  // Use Cloudflare DNS
+				VaultPort:   "443",
+				UseNipIO:    false,  // Using custom domain now
 			},
 		},
 		TokenFile:    filepath.Join(home, ".ruslan-cli", "tokens"),
