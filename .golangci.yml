@@ -1,0 +1,109 @@
+# golangci-lint configuration
+# https://golangci-lint.run/usage/configuration/
+
+run:
+  timeout: 5m
+  tests: true
+  skip-dirs:
+    - vendor
+    - dist
+
+linters:
+  enable:
+    - errcheck      # Check for unchecked errors
+    - gosimple      # Simplify code
+    - govet         # Reports suspicious constructs
+    - ineffassign   # Detect ineffectual assignments
+    - staticcheck   # Go static analysis
+    - typecheck     # Type-check Go code
+    - unused        # Check for unused constants, variables, functions and types
+    - gofmt         # Check if code is formatted
+    - goimports     # Check if imports are formatted
+    - misspell      # Check for commonly misspelled words
+    - revive        # Fast, configurable, extensible linter
+    - gosec         # Security checker
+    - gocritic      # Opinionated Go linter
+    - bodyclose     # Check HTTP response body is closed
+    - noctx         # Check HTTP request without context
+    - unparam       # Check for unused function parameters
+    - unconvert     # Remove unnecessary type conversions
+    - prealloc      # Find slice declarations that could potentially be preallocated
+    - exportloopref # Check for pointers to loop variables
+    - gocyclo       # Cyclomatic complexity
+    - dupl          # Code clone detection
+    - goconst       # Find repeated strings that could be replaced by constant
+    - depguard      # Check if package imports are in whitelist
+    - godox         # Check for TODO, FIXME, etc.
+    - errname       # Check that error types are named correctly
+    - errorlint     # Find code that will cause problems with Go 1.13+ error wrapping
+    - whitespace    # Check for unnecessary newlines
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+
+  govet:
+    check-shadowing: true
+    enable-all: true
+
+  gocyclo:
+    min-complexity: 15
+
+  dupl:
+    threshold: 100
+
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+
+  misspell:
+    locale: US
+
+  revive:
+    rules:
+      - name: exported
+        severity: warning
+        disabled: false
+      - name: package-comments
+        severity: warning
+        disabled: false
+      - name: indent-error-flow
+        severity: warning
+        disabled: false
+
+  gosec:
+    excludes:
+      - G104 # Audit errors not checked - we handle this with errcheck
+      - G304 # File path provided as taint input
+
+  godox:
+    keywords:
+      - FIXME
+      - BUG
+
+issues:
+  exclude-rules:
+    # Exclude some linters from running on tests files
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec
+        - goconst
+
+    # Exclude linting of auto-generated files
+    - path: (.*)?_gen\.go
+      linters:
+        - lll
+        - gocyclo
+
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+  sort-results: true
