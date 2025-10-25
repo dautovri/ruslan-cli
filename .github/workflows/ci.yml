@@ -18,6 +18,8 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,7 +38,7 @@ jobs:
         uses: golangci/golangci-lint-action@v4
         with:
           version: v1.55.2
-          args: --timeout=5m --skip-dirs=vendor
+          args: --timeout=5m ./...
 
       - name: Check formatting
         run: |
@@ -166,6 +168,9 @@ jobs:
   security:
     name: Security Scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
