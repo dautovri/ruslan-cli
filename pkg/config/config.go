@@ -100,9 +100,9 @@ func DefaultConfig() *Config {
 			ClusterName: "dev-gke-cluster",
 			Namespace:   "vault",
 			ServiceName: "vault",
-			VaultAddr:   "http://vault-dev.dautov.dev",  // HTTP for now, HTTPS coming soon
-			VaultPort:   "8200",
-			UseNipIO:    false,  // Using custom domain now
+			VaultAddr:   "https://vault-dev.dautov.dev",
+			VaultPort:   "443",
+			UseNipIO:    false,
 		},
 		"prod": {
 			Name:        "Production",
@@ -111,9 +111,9 @@ func DefaultConfig() *Config {
 			ClusterName: "prod-gke-cluster",
 			Namespace:   "vault",
 			ServiceName: "vault",
-			VaultAddr:   "http://vault.dautov.dev",  // HTTP for now, HTTPS coming soon
-			VaultPort:   "8200",
-			UseNipIO:    false,  // Using custom domain now
+			VaultAddr:   "https://vault.dautov.dev",
+			VaultPort:   "443",
+			UseNipIO:    false,
 		},
 		},
 		TokenFile:    filepath.Join(home, ".ruslan-cli", "tokens"),
