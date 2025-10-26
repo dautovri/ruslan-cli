@@ -7,13 +7,6 @@
 
 CLI tool for managing HashiCorp Vault across multiple environments (dev/prod).
 
-## Features
-
-- 🌍 Multi-environment support (dev/prod)
-- 🔐 Multiple authentication methods (token, userpass, approle)
-- 🔑 Secret management (list, get, put, delete)
-- 📊 Multiple output formats (table, JSON, YAML)
-- 🍺 Easy installation via Homebrew
 
 ## Installation
 
